@@ -6,6 +6,7 @@
 #
 
 obj-$(CONFIG_AT91SAM9_WATCHDOG) += at91sam9_wdt.o
+obj-$(CONFIG_AT91_GPIOWDT) += at91_gpiowdt.o
 obj-$(CONFIG_FTWDT010_WATCHDOG) += ftwdt010_wdt.o
 ifneq (,$(filter $(SOC), mx31 mx35 mx5 mx6 vf610))
 obj-y += imx_watchdog.o

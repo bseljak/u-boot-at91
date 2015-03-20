@@ -25,7 +25,7 @@
 DECLARE_GLOBAL_DATA_PTR;
 
 #ifdef CONFIG_NAND_ATMEL
-void sama5d3_xplained_nand_hw_init(void)
+void arp32_nand_hw_init(void)
 {
 	struct at91_smc *smc = (struct at91_smc *)ATMEL_BASE_SMC;
 
@@ -57,7 +57,7 @@ void sama5d3_xplained_nand_hw_init(void)
 #endif
 
 #ifdef CONFIG_CMD_USB
-static void sama5d3_xplained_usb_hw_init(void)
+static void arp32_usb_hw_init(void)
 {
 	at91_set_pio_output(AT91_PIO_PORTE, 3, 0);
 	at91_set_pio_output(AT91_PIO_PORTE, 4, 0);
@@ -65,7 +65,7 @@ static void sama5d3_xplained_usb_hw_init(void)
 #endif
 
 #ifdef CONFIG_GENERIC_ATMEL_MCI
-static void sama5d3_xplained_mci0_hw_init(void)
+static void arp32_mci0_hw_init(void)
 {
 	at91_mci_hw_init();
 
@@ -95,13 +95,13 @@ int board_init(void)
 	gd->bd->bi_boot_params = CONFIG_SYS_SDRAM_BASE + 0x100;
 
 #ifdef CONFIG_NAND_ATMEL
-	sama5d3_xplained_nand_hw_init();
+	arp32_nand_hw_init();
 #endif
 #ifdef CONFIG_CMD_USB
-	sama5d3_xplained_usb_hw_init();
+	arp32_usb_hw_init();
 #endif
 #ifdef CONFIG_GENERIC_ATMEL_MCI
-	sama5d3_xplained_mci0_hw_init();
+	arp32_mci0_hw_init();
 #endif
 #ifdef CONFIG_MACB
 	at91_gmac_hw_init();
@@ -141,9 +141,9 @@ int board_mmc_init(bd_t *bis)
 void spl_board_init(void)
 {
 #ifdef CONFIG_SYS_USE_MMC
-	sama5d3_xplained_mci0_hw_init();
+	arp32_mci0_hw_init();
 #elif CONFIG_SYS_USE_NANDFLASH
-	sama5d3_xplained_nand_hw_init();
+	arp32_nand_hw_init();
 #endif
 }
 
